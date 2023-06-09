@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.16">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EasyCash.Application\EasyCash.Application.csproj" />
     <ProjectReference Include="..\EasyCash.Infrastructure\EasyCash.Infrastructure.csproj" />
     <ProjectReference Include="..\EasyCash.Persistence\EasyCash.Persistence.csproj" />
