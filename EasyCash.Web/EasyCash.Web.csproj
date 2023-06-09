@@ -19,4 +19,5 @@
     <ProjectReference Include="..\EasyCash.Persistence\EasyCash.Persistence.csproj" />
   </ItemGroup>
 
+
 </Project>

@@ -1,5 +1,6 @@
 ﻿using EasyCash.Domain.Entities;
 using EasyCash.Domain.Entities.Common;
+using EasyCash.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,12 +11,10 @@ using System.Threading.Tasks;
 
 namespace EasyCash.Persistence.Contexts
 {
-    public class EasyCashDbContext:IdentityDbContext
+    public class EasyCashDbContext:IdentityDbContext<AppUser,AppRole,int>
     {
         public EasyCashDbContext(DbContextOptions options):base(options)
-        {
-            
-        }
+        {   }
         public DbSet<CustomerAccount> CustomerAccounts { get; set; }
         public DbSet<CustomerAccountProcess> CustomerAccountProcesses { get; set; }
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
