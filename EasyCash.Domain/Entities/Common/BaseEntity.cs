@@ -10,7 +10,8 @@ namespace EasyCash.Domain.Entities.Common
     {
         public int Id { get; set; }
         public bool Status { get; set; }
-       
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
         
     }
 }
