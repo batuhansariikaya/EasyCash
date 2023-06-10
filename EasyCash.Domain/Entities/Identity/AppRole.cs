@@ -11,4 +11,4 @@ namespace EasyCash.Domain.Entities.Identity
     {
     }
 }
-// bir kullanıcının birden fazla hesabı olabilir.
+

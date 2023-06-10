@@ -14,5 +14,8 @@ namespace EasyCash.Domain.Entities.Identity
         public string District { get; set; }
         public string City { get; set; }
         public string ImageUrl { get; set; }
+        ICollection<CustomerAccount> CustomerAccounts { get; set; }
     }
 }
+// bir kullanıcının birden fazla hesabı olabilir.
+// 

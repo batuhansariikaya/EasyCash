@@ -1,4 +1,5 @@
 ﻿using EasyCash.Domain.Entities.Common;
+using EasyCash.Domain.Entities.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace EasyCash.Domain.Entities
         public string Currency { get; set; }
         public decimal Balance  { get; set; }
         public string BankBranch  { get; set; }
+        public AppUser AppUser { get; set; }    
     }
 }
