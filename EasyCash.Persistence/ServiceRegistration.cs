@@ -1,4 +1,6 @@
-﻿using EasyCash.Persistence.Contexts;
+﻿using EasyCash.Application.Repositories;
+using EasyCash.Persistence.Contexts;
+using EasyCash.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +18,13 @@ namespace EasyCash.Persistence
             services.AddDbContext<EasyCashDbContext>(options => options.UseSqlServer(configurationManager.GetConnectionString("SQLServer")));
 
 
+            // IOC and Dependency Container
+
+            services.AddSingleton<ICustomerAccountReadRepository, CustomerAccountReadRepository>();
+            services.AddSingleton<ICustomerAccountWriteRepository, CustomerAccountWriteRepository>();
+            services.AddSingleton<IAccountProcessReadRepository, AccountProcessReadRepository>();
+            services.AddSingleton<IAccountProcessWriteRepository, AccountProcessWriteRepository>();
+            
         }
     }
 }
