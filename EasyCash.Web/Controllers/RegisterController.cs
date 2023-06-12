@@ -8,25 +8,39 @@ namespace EasyCash.Web.Controllers
 {
     public class RegisterController : Controller
     {
-        private readonly UserManager<AppUser> _userManager;
-        private readonly IMapper _mapper;
-        public RegisterController(UserManager<AppUser> userManager, IMapper mapper)
-        {
-            _userManager = userManager;
-            _mapper = mapper;
-        }
+        readonly UserManager<AppUser> _userManager;
+        readonly IMapper _mapper;
 
         [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
-        [HttpPost] 
-        public IActionResult Index(UserRegisterDTO userRegister)
+        [HttpPost]
+        public async Task<IActionResult> Index(UserRegisterDTO userRegister)
         {
-            AppUser map=_mapper.Map<AppUser>(userRegister);
-            _userManager.CreateAsync(map);
+            if (ModelState.IsValid)
+            {
+                AppUser map = _mapper.Map<AppUser>(userRegister);
+                IdentityResult result=await _userManager.CreateAsync(map, userRegister.Password);
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("Index", "ConfirmMail");
+                }
+                else
+                {
+                    foreach(var item in result.Errors)
+                    {
+                        ModelState.AddModelError("", item.Description);
+                    }
+                }
+               
+            }
+          
+            
             return View();
+
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using EasyCash.Application.Repositories;
+using EasyCash.Domain.Entities.Identity;
 using EasyCash.Persistence.Contexts;
 using EasyCash.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -16,14 +17,15 @@ namespace EasyCash.Persistence
             configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "..\\EasyCash.Web"));
             configurationManager.AddJsonFile("appsettings.json");
             services.AddDbContext<EasyCashDbContext>(options => options.UseSqlServer(configurationManager.GetConnectionString("SQLServer")));
-
-
+            
+            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<EasyCashDbContext>();
             // IOC and Dependency Container
 
-            services.AddSingleton<ICustomerAccountReadRepository, CustomerAccountReadRepository>();
-            services.AddSingleton<ICustomerAccountWriteRepository, CustomerAccountWriteRepository>();
-            services.AddSingleton<IAccountProcessReadRepository, AccountProcessReadRepository>();
-            services.AddSingleton<IAccountProcessWriteRepository, AccountProcessWriteRepository>();
+            services.AddScoped<ICustomerAccountReadRepository, CustomerAccountReadRepository>();
+            services.AddScoped<ICustomerAccountWriteRepository, CustomerAccountWriteRepository>();
+
+            services.AddScoped<IAccountProcessReadRepository, AccountProcessReadRepository>();
+            services.AddScoped<IAccountProcessWriteRepository, AccountProcessWriteRepository>();
             
         }
     }
