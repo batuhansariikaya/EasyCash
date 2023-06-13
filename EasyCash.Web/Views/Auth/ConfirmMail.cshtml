@@ -1,0 +1,17 @@
+﻿@model ConfirmMailDTO
+@{
+    Layout = null;
+}
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<div class="container">
+    <form method="post" action="/Auth/ConfirmMail/">
+        <h2>Mail Adresi: batuhan@gmail.com</h2>
+        <label>Kullanıcı Mail:</label>
+        <input  type="text" asp-for="Mail" value="@ViewBag.mail" class="form-control"/> 
+        <br />
+        <label>Doğrulama Kodu:</label>
+        <input type="text" asp-for="Code" class="form-control" />
+        <button class="btn btn-primary"></button>
+    </form>
+
+</div>

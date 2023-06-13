@@ -50,7 +50,8 @@ namespace EasyCash.Web.Controllers
 			if (result.Succeeded)
 			{
 				_sendMail.SendConfirmMail(user.Email, code);
-				return RedirectToAction("Index", "ConfirmMail");
+				TempData["Mail"]=userRegister.Email;
+				return RedirectToAction("ConfirmMail", "Auth");
 			}
 			else
 			{
