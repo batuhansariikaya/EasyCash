@@ -14,6 +14,7 @@ namespace EasyCash.Domain.Entities.Identity
         public string District { get; set; }
         public string City { get; set; }
         public string ImageUrl { get; set; }
+        public int ConfirmCode { get; set; }
         ICollection<CustomerAccount> CustomerAccounts { get; set; }
     }
 }

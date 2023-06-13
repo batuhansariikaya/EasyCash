@@ -1,10 +1,13 @@
+using EasyCash.Infrastructure;
 using EasyCash.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddPersistenceService();
+builder.Services.AddInfrastructureSerivce();
 builder.Services.AddControllersWithViews();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

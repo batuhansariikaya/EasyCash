@@ -1,8 +1,10 @@
-﻿using EasyCash.Application.Repositories;
+﻿using EasyCash.Application.Abstractions.Services;
+using EasyCash.Application.Repositories;
 using EasyCash.Application.Validators;
 using EasyCash.Domain.Entities.Identity;
 using EasyCash.Persistence.Contexts;
 using EasyCash.Persistence.Repositories;
+using EasyCash.Persistence.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +29,8 @@ namespace EasyCash.Persistence
 
             services.AddScoped<IAccountProcessReadRepository, AccountProcessReadRepository>();
             services.AddScoped<IAccountProcessWriteRepository, AccountProcessWriteRepository>();
+
+            services.AddScoped<IRandomNumber, RandomNumber>();
             
         }
     }
