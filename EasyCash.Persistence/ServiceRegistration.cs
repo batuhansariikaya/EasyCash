@@ -1,4 +1,5 @@
 ﻿using EasyCash.Application.Repositories;
+using EasyCash.Application.Validators;
 using EasyCash.Domain.Entities.Identity;
 using EasyCash.Persistence.Contexts;
 using EasyCash.Persistence.Repositories;
@@ -18,7 +19,7 @@ namespace EasyCash.Persistence
             configurationManager.AddJsonFile("appsettings.json");
             services.AddDbContext<EasyCashDbContext>(options => options.UseSqlServer(configurationManager.GetConnectionString("SQLServer")));
             
-            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<EasyCashDbContext>();
+            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<EasyCashDbContext>().AddErrorDescriber<CustomIdentityValidation>();
             // IOC and Dependency Container
 
             services.AddScoped<ICustomerAccountReadRepository, CustomerAccountReadRepository>();

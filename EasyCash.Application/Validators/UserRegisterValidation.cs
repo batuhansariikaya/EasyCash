@@ -17,7 +17,7 @@ namespace EasyCash.Application.Validators
                 .MaximumLength(30).WithMessage("Maksimum 30 karakter girişi yapın!")
                 .MinimumLength(2).WithMessage("Minimum 2 karakter girişi yapın!");
             RuleFor(x => x.Surname).NotEmpty().WithMessage("Soyad alanı boş bırakılamaz!");
-            RuleFor(x => x.Mail)
+            RuleFor(x => x.Email)
                 .NotEmpty().WithMessage("Mail alanı boş bırakılamaz!")
                 .EmailAddress().WithMessage("Lütfen geçerli bir mail adresi girin!");
             RuleFor(x => x.Password).NotEmpty().WithMessage("Şifre alanı boş bırakılamaz!");
