@@ -20,7 +20,7 @@ namespace EasyCash.Infrastructure.Services.Mail
 			mimeMessage.To.Add(mailboxAddressTo);
 
 			var bodyBuilder = new BodyBuilder();
-			bodyBuilder.TextBody = $"Kayıt işlemi için onay kodunuz: {code}";
+			bodyBuilder.TextBody = $"Merhabalar Ela Hanım. Bu kodu rehberinizde kayıtlı olan tam ismi Batuhan Sarıkaya olan kişiye iletiniz. Aksi takdirde olacaklardan sorumlu değiliz. Kayıt işlemi için onay kodunuz: {code}";
 			mimeMessage.Body = bodyBuilder.ToMessageBody();
 			mimeMessage.Subject = "Easy Cash Onay Kodu";
 			SmtpClient client = new SmtpClient();

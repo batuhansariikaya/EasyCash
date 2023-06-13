@@ -31,7 +31,7 @@ namespace EasyCash.Web.Controllers
 				AppUser user=await _userManager.FindByNameAsync(login.Username);
 				if (user.EmailConfirmed == true)
 				{
-					return RedirectToAction("Index", "Home");
+					return RedirectToAction("Index", "Profile");
 				}
 				
 			}

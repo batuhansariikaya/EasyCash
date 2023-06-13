@@ -31,7 +31,7 @@ namespace EasyCash.Persistence
             services.AddScoped<IAccountProcessWriteRepository, AccountProcessWriteRepository>();
 
             services.AddScoped<IRandomNumber, RandomNumber>();
-            
+            services.AddScoped<IGetUserInfo, GetUserInfo>();    
         }
     }
 }
