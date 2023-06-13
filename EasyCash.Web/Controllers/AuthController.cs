@@ -24,7 +24,7 @@ namespace EasyCash.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginDTO login)
         {
-			var result=await  _signInManager.PasswordSignInAsync(login.Username, login.Password, true, true);
+			var result=await _signInManager.PasswordSignInAsync(login.Username, login.Password, true, true);
 
 			if (result.Succeeded)
 			{
@@ -63,12 +63,12 @@ namespace EasyCash.Web.Controllers
 		[HttpPost]
 		public async Task<IActionResult> ConfirmMail(ConfirmMailDTO confirmMail)
 		{
-			AppUser user=await _userManager.FindByEmailAsync(confirmMail.Mail);
-			if(user.ConfirmCode==confirmMail.Code)
+			var user = await _userManager.FindByEmailAsync(confirmMail.Mail);
+			if (user.ConfirmCode == confirmMail.Code)
 			{
 				user.EmailConfirmed = true;
 				await _userManager.UpdateAsync(user);
-				return RedirectToAction("Index", "Profile");
+				return RedirectToAction("Login", "Auth");
 			}
 			return View();
 		}
