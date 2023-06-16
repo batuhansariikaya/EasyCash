@@ -17,6 +17,22 @@ namespace EasyCash.Persistence.Contexts
         {   }
         public DbSet<CustomerAccount> CustomerAccounts { get; set; }
         public DbSet<CustomerAccountProcess> CustomerAccountProcesses { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<CustomerAccountProcess>()
+                .HasOne(x => x.SenderCustomer)
+                .WithMany(y => y.CustomerSender)
+                .HasForeignKey(z => z.SenderID)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            builder.Entity<CustomerAccountProcess>()
+                .HasOne(x => x.ReceiverCustomer)
+                .WithMany(y => y.CustomerReceiver)
+                .HasForeignKey(z => z.ReceiverID)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            base.OnModelCreating(builder);
+        }
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         { 
             //ChangeTracker : Entityler üzerinden yapılan değişiklerin ya da yeni eklenen verinin yakalanmasını sağlayan propertydir. Update operasyonlarında Track edilen verileri yakalayıp elde etmemizi sağlar.

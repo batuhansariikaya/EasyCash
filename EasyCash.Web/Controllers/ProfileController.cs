@@ -27,21 +27,22 @@ namespace EasyCash.Web.Controllers
             userEdit.City = user.City;
             userEdit.District = user.District;
             userEdit.ImageUrl= user.ImageUrl;
-
+            userEdit.Username = user.UserName;
 
             return View(userEdit);
         }
         [HttpPost]
         public async Task<IActionResult> MyAccount(UserEditDTO userEdit)
         {
-            var user=await _userManager.FindByNameAsync(userEdit.Name); 
+            var user=await _userInfo.LoggedUserInfo(User.Identity.Name); 
             user.Name = userEdit.Name;
-            user.Surname=userEdit.Surname;  
+            user.Surname=userEdit.Surname;
+            user.UserName = userEdit.Username;
             user.City=userEdit.City;
             user.District=userEdit.District;
-            user.ImageUrl=userEdit.ImageUrl;
+            user.ImageUrl="asd";
             user.Email=userEdit.Email;
-            user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, userEdit.Password);
+        //    user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, userEdit.Password);
             var result = await _userManager.UpdateAsync(user);
             if(result.Succeeded)
             {
